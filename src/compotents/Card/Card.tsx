@@ -19,8 +19,8 @@ export default function Card({ card }: IProms) {
     try {
       await api.deleteCard(card._id);
       dispatch({ type: "delete", payload: card._id });
-    } catch {
-      errorHandler.alert("The card was not deleted due to a server error");
+    } catch (error) {
+      errorHandler.axiosError("The card was not deleted due to a server error", error);
     }
   };
 
@@ -36,10 +36,11 @@ export default function Card({ card }: IProms) {
       try {
         await api.updateCard(currentCard);
         dispatch({ type: "update", payload: currentCard });
-      } catch {
+      } catch (error) {
         setTitle(card.title);
         setDescription(card.description);
-        errorHandler.alert("The card was not deleted due to a server error");
+
+        errorHandler.axiosError("The card was not updated due to a server error", error);
       }
     }
   };
@@ -51,8 +52,8 @@ export default function Card({ card }: IProms) {
       // dispatch first to increase reaction time
       dispatch({ type: "update", payload: cardToUpdate });
       await api.updateCard(cardToUpdate);
-    } catch {
-      errorHandler.alert("Changes to the card state were not saved due to a server error.");
+    } catch (error) {
+      errorHandler.axiosError("The card was not updated due to a server error", error);
     }
   };
 

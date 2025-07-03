@@ -31,7 +31,7 @@ export default function CardCreator() {
     <Paper className="w-[300px] mt-3 mx-auto">
       <form className="flex flex-col gap-2 w-[300px]" onSubmit={handleSubmit}>
         <Input value={title} handleChange={setTitle} required />
-        <Input value={description} handleChange={setDescripcion} />
+        <Input value={description} handleChange={setDescripcion} required />
 
         <button className="border border-gray-500 " type="submit" disabled={buttonState === "Request"}>
           {!buttonState && "submit"}
