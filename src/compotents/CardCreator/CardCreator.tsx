@@ -1,4 +1,5 @@
 "use client";
+import errorHandler from "@/helpers/errorHendler";
 import useCards from "@/hooks/useCards";
 import { useState, type FormEventHandler } from "react";
 import api from "../../api";
@@ -22,8 +23,9 @@ export default function CardCreator() {
 
       dispatch({ type: "add", payload: response.data });
       setButtonState("Success");
-    } catch {
+    } catch (error) {
       setButtonState("Error");
+      errorHandler.axiosError("The card was not created due to a server error.", error);
     }
   };
 
