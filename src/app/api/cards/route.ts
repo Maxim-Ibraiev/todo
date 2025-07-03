@@ -21,7 +21,7 @@ export async function POST(request: Request) {
   // create
   const newCard = await createCardAtDB(body);
 
-  return Responser.ok(newCard);
+  return Responser.created(newCard);
 }
 
 export async function PATCH(request: Request) {
