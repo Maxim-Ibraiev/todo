@@ -4,7 +4,9 @@ import useCards from "@/hooks/useCards";
 import type { ICard } from "@/interfaces.js";
 import Image from "next/image";
 import { useState, type FocusEventHandler } from "react";
+import Input from "../Input";
 import Paper from "../Paper";
+import Textarea from "../Textarea";
 
 interface IProms {
   card: ICard;
@@ -73,22 +75,19 @@ export default function Card({ card }: IProms) {
       </div>
 
       <div className="flex flex-col">
-        <input
+        <Input
           className="text-2xl border-b text-center"
           value={title}
           name="title"
           onChange={(e) => setTitle(e.target.value)}
           onBlur={handleBlur}
-          maxLength={999}
         />
-        <textarea
-          className="m-3 p-1"
-          rows={3}
+        <Textarea
+          className="m-3 p-1 "
           value={description}
           name="description"
           onChange={(e) => setDescription(e.target.value)}
           onBlur={handleBlur}
-          maxLength={999}
         />
       </div>
     </Paper>
